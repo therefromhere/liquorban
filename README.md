@@ -10,11 +10,12 @@ A visualisation of Auckland Liquor Ban areas, as a learning project about Leafle
 
 serve index.html on 127.0.0.1:8000:
 
-	python -m SimpleHTTPServer
+    cd web
+    python -m SimpleHTTPServer
 
 ## Deployment
 
 Quick + dirty deploy to s3:
 
-	aws s3 sync . s3://liquorbanvis --exclude ".git/*" --exclude ".*"
+    aws s3 sync . s3://liquorbanvis --exclude ".git/*" --exclude ".*"
 
