@@ -1,6 +1,6 @@
 # Auckland Liquor Ban Areas
 
-A visualisation of Auckland Liquor Ban areas.
+A visualisation of Auckland Liquor Ban areas, as a learning project about Leaflet and GIS.
 
 ## Source Data
 
