@@ -8,6 +8,9 @@ A visualisation of Auckland Liquor Ban areas.
 
 ## Development
 
+serve index.html on 127.0.0.1:8000:
+
+	python -m SimpleHTTPServer
 
 ## Deployment
 
