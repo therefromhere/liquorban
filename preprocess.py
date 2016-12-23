@@ -7,7 +7,8 @@ from contextlib import contextmanager
 MAP_GEOJSON_FILENAME = "web/geojson/auckland_liquor_ban.geojson"
 FILTER_PROPERTIES = 'BYLAWTITLE BYLAWAREAN HOURSOFOPE COUNCILDEC'.split()
 
-# mapping to normalise the HOURSOFOPE property
+# mapping to normalise the HOURSOFOPE property.
+# if the values change, also update the JS that uses them to choose colours
 HOURSOFOPE_ENUM = {
     '24 hours, 7 days a week': "24x7",
 
@@ -67,9 +68,6 @@ def preprocess_geojson():
                 print "Non-current feature found, skipping: ", json.dumps(feature)
                 continue
 
-            if feature['properties']['BYLAWTITLE'] != "City Centre":
-                continue
-
             out_feature = feature
 
             for k in feature['properties']:
@@ -87,4 +85,5 @@ def preprocess_geojson():
 
 
 if __name__ == '__main__':
+    preprocess_geojson()
     squash_geojson()
