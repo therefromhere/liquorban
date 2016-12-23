@@ -64,7 +64,7 @@ def preprocess_geojson():
         out_features = []
 
         for feature in map_geojson['features']:
-            if feature['properties']['BYLAWSTATU'] != 'Current':
+            if feature['properties'].get('BYLAWSTATU', 'Current') != 'Current':
                 print "Non-current feature found, skipping: ", json.dumps(feature)
                 continue
 
