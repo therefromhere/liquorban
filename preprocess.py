@@ -52,7 +52,8 @@ def squash_geojson():
 
     with open(MAP_GEOJSON_FILENAME, 'w') as f:
         with short_float_patch():
-            json.dump(map_geojson, f, separators=(',', ':'))
+            # remove space after comma to save space, added newline after: to make diffs readable
+            json.dump(map_geojson, f, separators=(',', ':\n'))
 
 
 def preprocess_geojson():
