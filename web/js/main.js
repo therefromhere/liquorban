@@ -8,6 +8,10 @@ function popUp(f,l) {
     var out = [];
     var name = f.properties.BYLAWTITLE;
     var hours = f.properties.HOURSOFOPE;
+    var board = f.properties.BYLAWAREAN;
+    var council_ref = f.properties.COUNCILDEC;
+
+    /*var label = "<b>" + name + "</b><br />" + hours + "<br />" + "<i>(" + council_ref + ", " + board + ")</i>";*/
     var label = "<b>" + name + "</b><br />" + hours;
 
     l.bindPopup(label);
