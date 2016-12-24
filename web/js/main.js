@@ -8,6 +8,10 @@ function popUp(f,l) {
     var out = [];
     var name = f.properties.BYLAWTITLE;
     var hours = f.properties.HOURSOFOPE;
+    var board = f.properties.BYLAWAREAN;
+    var council_ref = f.properties.COUNCILDEC;
+
+    /*var label = "<b>" + name + "</b><br />" + hours + "<br />" + "<i>(" + council_ref + ", " + board + ")</i>";*/
     var label = "<b>" + name + "</b><br />" + hours;
 
     l.bindPopup(label);
@@ -16,29 +20,29 @@ function popUp(f,l) {
 var liquorban = L.geoJson.ajax("geojson/auckland_liquor_ban.geojson", {
     onEachFeature: popUp,
     style: function(f) {
-        /* todo, use enum instead */
+        /* enumeration values for opening ours that were added during preprocessing */
         /* colours from http://colorbrewer2.org/#type=diverging&scheme=RdYlBu&n=9 */
         var colorMap = {
-            '24 hours, 7 days a week': "#d73027",
+            '24x7': "#d73027",
 
-            '3pm to 7am daily': "#f46d43",
+            '3pm_to_7am': "#f46d43",
 
-            '7pm to 7am daily': "#fdae61",
-            '7pm to 7am daily, daylight savings only': "#fdae61",
-            'Holiday (7pm to 7am daily from Friday of Labour weekend to Tuesday of Easter)': "#fdae61", 
+            '7pm_to_7am': "#fdae61",
+            '7pm_to_7am_dst': "#fdae61",
+            '7pm_to_7am_summer': "#fdae61", 
 
-            '9pm to 7am during daylight savings and 7pm to 7am outside daylight savings': "#74add1", 
-            '9pm to 7am during daylight saving and 7pm to 7am outside daylight saving': "#74add1", 
-            '9pm to 7am daily, daylight saving only': "#74add1",
+            '9pm_to_7am_dst_7pm_to_7am_nodst': "#74add1", 
+            '9pm_to_7am_dst_7pm': "#74add1", 
 
-            '10pm to 7am during daylight saving and 7pm to 7am outside daylight saving': "#4575b4",
+            '10pm_to_7am_dst_7pm_to_7am_nodst': "#4575b4",
 
-            'At all hours of the day on the Market Days of the annual Kowhai Festival each year': "#1a9850",
-            'Major Event: 12 hours before & after a major event.': "#1a9850",
-            'Second weekend of each December from 4pm of the Friday before the event (Christmas in the Park) to 8am on the following Monday': "#1a9850"
+            'special_warkworth_kowhai': "#1a9850",
+            'special_eden_park': "#1a9850",
+            'special_xmas_in_the_park': "#1a9850"
         };
 
-        var hours = f.properties.HOURSOFOPE;
+        var hours = f.properties.HOURSOFOPE_ENUM;
+
         if (colorMap[hours]) {
             return { color: colorMap[hours] }; 
         }
