@@ -1,5 +1,20 @@
 var mymap = L.map('mapid').setView([-36.87, 174.77], 12);
 
+function onLocationFound(e) {
+    L.marker(e.latlng).addTo(mymap);
+}
+
+/*
+function onLocationError(e) {
+}
+*/
+
+mymap
+  .on('locationfound', onLocationFound)
+  //.on('locationerror', onLocationError)
+  .locate({setView: true, maxZoom: 16});
+
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(mymap);
