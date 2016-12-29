@@ -1,2 +1,14 @@
+html, body, #container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 
-#mapid { height: 600px; }
+#mapid {
+  width: auto;
+  /*height: 100%;*/
+    height: 600px;
+    /*height: 90vh;*/
+    /*margin: -20px 0 0;
+    padding: 0 0 0;*/
+}
