@@ -1,8 +1,9 @@
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,6 +12,11 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-PMLR5TD');</script>
   <!-- End Google Tag Manager -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
+  <link rel="stylesheet" href="css/main.css">
 
   <title>Auckland Liquor Ban Areas</title>
   <meta name="description" content="A map displaying the various Alcohol Control Areas (aka Liquor Bans) in Auckland">
@@ -37,10 +43,6 @@
   <meta name="msapplication-wide310x150logo" content="img/favicons/mstile-310x150.png"/>
   <meta name="msapplication-square310x310logo" content="img/favicons/mstile-310x310.png"/>
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -48,29 +50,49 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <h1>Auckland Liquor Ban Areas</h1>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Auckland Liquor Ban Areas</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div><!--/.navbar-collapse -->
+    </div>
+  </nav>
 
-  <div id="mapid"></div>
+  <div class="container">
 
-  <ul>
-    <li>
-      <a href="https://github.com/therefromhere/liquorban">Source on GitHub</a>
-    </li>
-    <li>
-      <a href="http://aucklandopendata.aucklandcouncil.opendata.arcgis.com/datasets/20c82f3d1ddb4f95a77ceeb04126aea2_0">Auckland Alcohol Control Area</a> data by <a href="http://aucklandopendata.aucklandcouncil.opendata.arcgis.com/">Auckland Council</a> is licensed under <a href="https://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC BY 3.0</a> (data downloaded 2016-12-22)
-    </li>
-    <li>
-      Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC BY 3.0</a>
-    </li>
-  </ul>
-  <p><b>Disclaimer:</b> This website is for information purposes only and may not be accurate.  Please drink responsibly &amp; don't be a dick.</p>
-  <p>For more information see <a href="http://www.aucklandcouncil.govt.nz/en/licencesregulations/alcohol/drinkresponsibly/pages/alcoholbans.aspx">Auckland Council Alcohol bans</a>.</p>
+    <div id="mapid"></div>
 
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <ul>
+      <li>
+        <a href="https://github.com/therefromhere/liquorban">Source on GitHub</a>
+      </li>
+      <li>
+        <a href="http://aucklandopendata.aucklandcouncil.opendata.arcgis.com/datasets/20c82f3d1ddb4f95a77ceeb04126aea2_0">Auckland Alcohol Control Area</a> data by <a href="http://aucklandopendata.aucklandcouncil.opendata.arcgis.com/">Auckland Council</a> is licensed under <a href="https://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC BY 3.0</a> (data downloaded 2016-12-22)
+      </li>
+      <li>
+        Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC BY 3.0</a>
+      </li>
+    </ul>
+    <p><b>Disclaimer:</b> This website is for information purposes only and may not be accurate.  Please drink responsibly &amp; don't be a dick.</p>
+    <p>For more information see <a href="http://www.aucklandcouncil.govt.nz/en/licencesregulations/alcohol/drinkresponsibly/pages/alcoholbans.aspx">Auckland Council Alcohol bans</a>.</p>
+
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-ajax@2.1.0/dist/leaflet.ajax.js"></script>
-<script src="js/vendor/modernizr-2.8.3.min.js"></script>
-<script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
