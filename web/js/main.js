@@ -1,3 +1,10 @@
+
+$("#about-btn").click(function() {
+  $("#aboutModal").modal("show");
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
+});
+
 var mymap = L.map('mapid').setView([-36.87, 174.77], 12);
 
 function onLocationFound(e) {
