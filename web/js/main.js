@@ -100,8 +100,8 @@ var liquorban = L.geoJson.ajax("geojson/auckland_liquor_ban.geojson", {
         if (colorMap[hours]) {
             return {
                 color: colorMap[hours],
-                opacity: 0.4,
-                weight: 2
+                opacity: 0.5,
+                weight: 1
             };
         }
     }
