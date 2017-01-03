@@ -86,7 +86,7 @@ var liquorban = L.geoJson.ajax("geojson/auckland_liquor_ban.geojson", {
             '7pm_to_7am_summer': EVENING,
 
             '9pm_to_7am_dst_7pm_to_7am_nodst': NIGHT,
-            '9pm_to_7am_dst_7pm': NIGHT,
+            '9pm_to_7am_dst': NIGHT,
 
             '10pm_to_7am_dst_7pm_to_7am_nodst': NIGHT,
 
