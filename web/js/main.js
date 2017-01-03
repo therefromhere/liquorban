@@ -1,3 +1,10 @@
+
+$("#about-btn").click(function() {
+  $("#aboutModal").modal("show");
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
+});
+
 var mymap = L.map('mapid').setView([-36.87, 174.77], 12);
 
 function onLocationFound(e) {
@@ -14,10 +21,13 @@ mymap
   //.on('locationerror', onLocationError)
   .locate({setView: true, maxZoom: 16});
 
+var CartoDB_Positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+});
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(mymap);
+CartoDB_Positron.addTo(mymap);
 
 function popUp(f,l) {
     var out = [];
@@ -29,37 +39,47 @@ function popUp(f,l) {
     /*var label = "<b>" + name + "</b><br />" + hours + "<br />" + "<i>(" + council_ref + ", " + board + ")</i>";*/
     var label = "<b>" + name + "</b><br />" + hours;
 
-    l.bindPopup(label);
+    l.bindPopup(label, {
+        maxWidth: 250
+    });
 }
 
 var liquorban = L.geoJson.ajax("geojson/auckland_liquor_ban.geojson", {
     onEachFeature: popUp,
     style: function(f) {
-        /* enumeration values for opening ours that were added during preprocessing */
-        /* colours from http://colorbrewer2.org/#type=diverging&scheme=RdYlBu&n=9 */
+        var ALL_TIME = "#ff2a23";
+        var EVENING = "#ff8f1c";
+        var NIGHT = "#7c2d9a";
+        var SPECIAL = "#6ad5ff";
+
+        /* enumeration values for opening hours that were added during preprocessing */
         var colorMap = {
-            '24x7': "#d73027",
+            '24x7': ALL_TIME, 
 
-            '3pm_to_7am': "#f46d43",
+            '3pm_to_7am': EVENING,
 
-            '7pm_to_7am': "#fdae61",
-            '7pm_to_7am_dst': "#fdae61",
-            '7pm_to_7am_summer': "#fdae61", 
+            '7pm_to_7am': EVENING,
+            '7pm_to_7am_dst': EVENING,
+            '7pm_to_7am_summer': EVENING,
 
-            '9pm_to_7am_dst_7pm_to_7am_nodst': "#74add1", 
-            '9pm_to_7am_dst_7pm': "#74add1", 
+            '9pm_to_7am_dst_7pm_to_7am_nodst': NIGHT,
+            '9pm_to_7am_dst': NIGHT,
 
-            '10pm_to_7am_dst_7pm_to_7am_nodst': "#4575b4",
+            '10pm_to_7am_dst_7pm_to_7am_nodst': NIGHT,
 
-            'special_warkworth_kowhai': "#1a9850",
-            'special_eden_park': "#1a9850",
-            'special_xmas_in_the_park': "#1a9850"
+            'special_warkworth_kowhai': SPECIAL,
+            'special_eden_park': SPECIAL,
+            'special_xmas_in_the_park': SPECIAL
         };
 
         var hours = f.properties.HOURSOFOPE_ENUM;
 
         if (colorMap[hours]) {
-            return { color: colorMap[hours] }; 
+            return {
+                color: colorMap[hours],
+                opacity: 0.5,
+                weight: 1
+            };
         }
     }
 }).addTo(mymap);
