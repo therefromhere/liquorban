@@ -1,7 +1,6 @@
 html, body, #map-container {
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
 .navbar {
@@ -14,9 +13,5 @@ html, body, #map-container {
 
 #mapid {
   width: auto;
-  /*height: 100%;*/
-    height: 600px;
-    /*height: 90vh;*/
-    /*margin: -20px 0 0;
-    padding: 0 0 0;*/
+  height: 100%;
 }
