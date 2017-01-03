@@ -72,8 +72,8 @@ var liquorban = L.geoJson.ajax("geojson/auckland_liquor_ban.geojson", {
     style: function(f) {
         var ALL_TIME = "#ff2a23";
         var EVENING = "#ff8f1c";
-        var NIGHT = "#6ad5ff";
-        var SPECIAL = "#5Aff5d";
+        var NIGHT = "#7c2d9a";
+        var SPECIAL = "#6ad5ff";
 
         /* enumeration values for opening hours that were added during preprocessing */
         var colorMap = {
@@ -100,8 +100,8 @@ var liquorban = L.geoJson.ajax("geojson/auckland_liquor_ban.geojson", {
         if (colorMap[hours]) {
             return {
                 color: colorMap[hours],
-                opacity: 0.5,
-                weight: 1
+                opacity: 0.4,
+                weight: 2
             };
         }
     }
