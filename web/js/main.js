@@ -5,9 +5,20 @@ $("#about-btn").click(function() {
   return false;
 });
 
-var mymap = L.map('mapid').setView([-36.87, 174.77], 12);
+var AUCKLAND_LATLNG = L.latLng([-36.87, 174.77]);
+
+var mymap = L.map('mapid').setView(AUCKLAND_LATLNG, 12);
 
 function onLocationFound(e) {
+    var distance = e.latlng.distanceTo(AUCKLAND_LATLNG);
+
+    if (distance < 150 * 1000) {
+      mymap.setView(e.latlng, 12);
+    } else {
+      /* todo - popup a warning here */
+      console.log("distance: " + distance + " from Auckland, not using geolocation");
+    }
+
     L.marker(e.latlng).addTo(mymap);
 }
 
@@ -19,7 +30,7 @@ function onLocationError(e) {
 mymap
   .on('locationfound', onLocationFound)
   //.on('locationerror', onLocationError)
-  .locate({setView: true, maxZoom: 16});
+  .locate({});
 
 var CartoDB_Positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
