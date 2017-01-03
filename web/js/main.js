@@ -64,7 +64,9 @@ function popUp(f,l) {
     /*var label = "<b>" + name + "</b><br />" + hours + "<br />" + "<i>(" + council_ref + ", " + board + ")</i>";*/
     var label = "<b>" + name + "</b><br />" + hours;
 
-    l.bindPopup(label);
+    l.bindPopup(label, {
+        'maxWidth': 250
+    });
 }
 
 var liquorban = L.geoJson.ajax("geojson/auckland_liquor_ban.geojson", {
