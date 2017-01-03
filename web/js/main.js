@@ -65,7 +65,7 @@ function popUp(f,l) {
     var label = "<b>" + name + "</b><br />" + hours;
 
     l.bindPopup(label, {
-        'maxWidth': 250
+        maxWidth: 250
     });
 }
 
