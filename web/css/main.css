@@ -9,6 +9,7 @@ html, body, #map-container {
 
 #map-container {
   padding: 0px;
+  height: calc(100% - 51px);
 }
 
 #mapid {
