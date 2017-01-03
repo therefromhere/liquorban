@@ -42,25 +42,29 @@ function popUp(f,l) {
 var liquorban = L.geoJson.ajax("geojson/auckland_liquor_ban.geojson", {
     onEachFeature: popUp,
     style: function(f) {
-        /* enumeration values for opening ours that were added during preprocessing */
-        /* colours from http://colorbrewer2.org/#type=diverging&scheme=RdYlBu&n=9 */
+        var ALL_TIME = "#ff2a23";
+        var EVENING = "#ff8f1c";
+        var NIGHT = "#6ad5ff";
+        var SPECIAL = "#5Aff5d";
+
+        /* enumeration values for opening hours that were added during preprocessing */
         var colorMap = {
-            '24x7': "#d73027",
+            '24x7': ALL_TIME, 
 
-            '3pm_to_7am': "#f46d43",
+            '3pm_to_7am': EVENING,
 
-            '7pm_to_7am': "#fdae61",
-            '7pm_to_7am_dst': "#fdae61",
-            '7pm_to_7am_summer': "#fdae61", 
+            '7pm_to_7am': EVENING,
+            '7pm_to_7am_dst': EVENING,
+            '7pm_to_7am_summer': EVENING,
 
-            '9pm_to_7am_dst_7pm_to_7am_nodst': "#74add1", 
-            '9pm_to_7am_dst_7pm': "#74add1", 
+            '9pm_to_7am_dst_7pm_to_7am_nodst': NIGHT,
+            '9pm_to_7am_dst_7pm': NIGHT,
 
-            '10pm_to_7am_dst_7pm_to_7am_nodst': "#4575b4",
+            '10pm_to_7am_dst_7pm_to_7am_nodst': NIGHT,
 
-            'special_warkworth_kowhai': "#1a9850",
-            'special_eden_park': "#1a9850",
-            'special_xmas_in_the_park': "#1a9850"
+            'special_warkworth_kowhai': SPECIAL,
+            'special_eden_park': SPECIAL,
+            'special_xmas_in_the_park': SPECIAL
         };
 
         var hours = f.properties.HOURSOFOPE_ENUM;
