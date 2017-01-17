@@ -55,7 +55,7 @@ function popUp(f,l) {
     });
 }
 
-var liquorban = L.geoJson.ajax("geojson/auckland_liquor_ban.geojson", {
+var liquorban = L.geoJson.ajax("data/auckland_liquor_ban.json", {
     onEachFeature: popUp,
     style: function(f) {
         var ALL_TIME = "#ff2a23";
