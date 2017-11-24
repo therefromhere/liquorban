@@ -4,7 +4,7 @@ import json
 from collections import OrderedDict
 from contextlib import contextmanager
 
-MAP_GEOJSON_FILENAME = "web/data/auckland_liquor_ban.json"
+MAP_GEOJSON_FILENAME = "docs/data/auckland_liquor_ban.json"
 FILTER_PROPERTIES = 'BYLAWTITLE BYLAWAREAN HOURSOFOPE COUNCILDEC'.split()
 
 # mapping to normalise the HOURSOFOPE property.

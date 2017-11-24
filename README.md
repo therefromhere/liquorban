@@ -10,7 +10,7 @@ A visualisation of Auckland Liquor Ban areas, as a learning project about Leafle
 
 serve index.html on 127.0.0.1:8000:
 
-    cd web
+    cd docs
     python -m SimpleHTTPServer
 
 ## Deployment
