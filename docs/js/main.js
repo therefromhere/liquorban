@@ -43,9 +43,9 @@ CartoDB_Positron.addTo(mymap);
 function popUp(f,l) {
     var out = [];
     var name = f.properties.BYLAWTITLE;
-    var hours = f.properties.HOURSOFOPE;
-    var board = f.properties.BYLAWAREAN;
-    var council_ref = f.properties.COUNCILDEC;
+    var hours = f.properties.HOURSOFOPERATION;
+    var board = f.properties.BYLAWAREANAME;
+    var council_ref = f.properties.COUNCILDECISIONREF;
 
     /*var label = "<b>" + name + "</b><br />" + hours + "<br />" + "<i>(" + council_ref + ", " + board + ")</i>";*/
     var label = "<b>" + name + "</b><br />" + hours;
@@ -55,7 +55,7 @@ function popUp(f,l) {
     });
 }
 
-var liquorban = L.geoJson.ajax("data/auckland_liquor_ban.json", {
+var liquorban = L.geoJson.ajax("https://opendata.arcgis.com/datasets/20c82f3d1ddb4f95a77ceeb04126aea2_0.geojson", {
     onEachFeature: popUp,
     style: function(f) {
         var ALL_TIME = "#ff2a23";
@@ -63,27 +63,28 @@ var liquorban = L.geoJson.ajax("data/auckland_liquor_ban.json", {
         var NIGHT = "#7c2d9a";
         var SPECIAL = "#6ad5ff";
 
-        /* enumeration values for opening hours that were added during preprocessing */
+        /* set colours for opening hours */
         var colorMap = {
-            '24x7': ALL_TIME, 
+            '24 hours, 7 days a week': ALL_TIME,
 
-            '3pm_to_7am': EVENING,
+            '3pm to 7am daily': EVENING,
 
-            '7pm_to_7am': EVENING,
-            '7pm_to_7am_dst': EVENING,
-            '7pm_to_7am_summer': EVENING,
+            '7pm to 7am daily': EVENING,
+            '7pm to 7am daily, daylight savings only': EVENING,
+            'Holiday (7pm to 7am daily from Friday of Labour weekend to Tuesday of Easter)': EVENING,
 
-            '9pm_to_7am_dst_7pm_to_7am_nodst': NIGHT,
-            '9pm_to_7am_dst': NIGHT,
+            '9pm to 7am during daylight savings and 7pm to 7am outside daylight savings': NIGHT,
+            '9pm to 7am during daylight saving and 7pm to 7am outside daylight saving': NIGHT,
+            '9pm to 7am daily, daylight saving only': NIGHT,
 
-            '10pm_to_7am_dst_7pm_to_7am_nodst': NIGHT,
+            '10pm to 7am during daylight saving and 7pm to 7am outside daylight saving': NIGHT,
 
-            'special_warkworth_kowhai': SPECIAL,
-            'special_eden_park': SPECIAL,
-            'special_xmas_in_the_park': SPECIAL
+            'At all hours of the day on the Market Days of the annual Kowhai Festival each year': SPECIAL,
+            'Major Event: 12 hours before & after a major event.': SPECIAL,
+            'Second weekend of each December from 4pm of the Friday before the event (Christmas in the Park) to 8am on the following Monday': SPECIAL
         };
 
-        var hours = f.properties.HOURSOFOPE_ENUM;
+        var hours = f.properties.HOURSOFOPERATION;
 
         if (colorMap[hours]) {
             return {
