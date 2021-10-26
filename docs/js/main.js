@@ -55,7 +55,7 @@ function popUp(f,l) {
     });
 }
 
-var liquorban = L.geoJson.ajax("https://opendata.arcgis.com/datasets/20c82f3d1ddb4f95a77ceeb04126aea2_0.geojson", {
+var liquorban = L.geoJson.ajax("https://opendata.arcgis.com/api/v3/datasets/c755b727882e4d489882e55df0a584e5_0/downloads/data?format=geojson&spatialRefId=4326", {
     onEachFeature: popUp,
     style: function(f) {
         var ALL_TIME = "#ff2a23";
